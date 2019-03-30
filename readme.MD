@@ -42,7 +42,9 @@ Please answer the following questions:
     * Why do you think that was done, what are the advantages / disadvantages?
     
     The advantages to having a seperate file and directory structure are as follows:
+
         1) Makes it easier to categorise all your components to adapt to design patterns like container - presentational
+    
         2) Makes the app decluttered and gives it a structure
 
     THe disadvantages are:
