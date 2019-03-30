@@ -18,6 +18,7 @@ const initialState = {
     ],
     stepNumber: 0,
     xIsNext: true,
+    highlighted: []
 };
 
 //## Reducer
@@ -38,12 +39,17 @@ const GameReducer = (state = initialState, action) => {
 
 
 function updateSelectedMove(state, {moveNumber}) {
+    const history = state.history.slice(0, moveNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
     return Object.assign({}, state, {
         stepNumber: moveNumber,
-        xIsNext: (moveNumber % 2) === 0
+        xIsNext: (moveNumber % 2) === 0,
+        highlighted: calculateWinner(squares, true)
     })
 
 }
+
 
 function updateSelectedSquare(state, {squareNumber}) {
 
@@ -65,14 +71,15 @@ function updateSelectedSquare(state, {squareNumber}) {
         ]),
         stepNumber: history.length,
         xIsNext: !state.xIsNext,
-        winner: calculateWinner(squares)
+        winner: calculateWinner(squares),
+        highlighted: calculateWinner(squares, true)
     };
 }
 
 /**
  * A game of tic-tac-toe.
  */
-function calculateWinner(squares) {
+function calculateWinner(squares, returnLines = false) {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -86,10 +93,10 @@ function calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            return  returnLines ? lines[i] : squares[a];
         }
     }
-    return null;
+    return returnLines ? [] : null;
 }
 
 

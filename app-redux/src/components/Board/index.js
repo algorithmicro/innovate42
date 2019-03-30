@@ -8,10 +8,13 @@ import Square from '../Square';
  */
 class Board extends React.Component {
     renderSquare(i) {
+        const { squares, highlighted, onClick } = this.props;
+        const highlight = highlighted.includes(i);
         return (
             <Square
-                value={this.props.squares[i]}
-                onClick={() => this.props.onClick(i)}
+                highlight = { highlight ? 'highlight' : '' }
+                value={squares[i]}
+                onClick={() => onClick(i)}
             />
         );
     }

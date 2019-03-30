@@ -12,9 +12,11 @@ class Game extends React.Component {
 
 
     render() {
-        const history = this.props.history;
-        const current = history[this.props.stepNumber];
 
+        const { history, stepNumber, jumpToMove, winner, xIsNext, handleClick, highlighted } = this.props;
+        console.log()
+
+        const current = history[stepNumber];
 
         const moves = history.map((step, move) => {
             const desc = move ?
@@ -22,16 +24,16 @@ class Game extends React.Component {
                 'Go to game start';
             return (
                 <li key={move}>
-                    <button onClick={() => this.props.jumpToMove(move)}>{desc}</button>
+                    <button onClick={() => jumpToMove(move)}>{desc}</button>
                 </li>
             );
         });
 
         let status;
-        if (this.props.winner) {
-            status = "Winner: " + this.props.winner;
+        if (winner) {
+            status = "Winner: " + winner;
         } else {
-            status = "Next player: " + (this.props.xIsNext ? "X" : "O");
+            status = "Next player: " + (xIsNext ? "X" : "O");
         }
 
         return (
@@ -39,7 +41,8 @@ class Game extends React.Component {
                 <div className="game-board">
                     <Board
                         squares={current.squares}
-                        onClick={i => this.props.handleClick(i)}
+                        onClick={i => handleClick(i)}
+                        highlighted={ highlighted }
                     />
                 </div>
                 <div className="game-info">
@@ -53,6 +56,7 @@ class Game extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        highlighted: state.game.highlighted,
         winner: state.game.winner,
         xIsNext: state.game.xIsNext,
         history: state.game.history,
