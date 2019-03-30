@@ -40,10 +40,19 @@ Please answer the following questions:
     
 1.  Comparing the app-original and app-standalone code bases. The app-standalone code base has put each component in a separate file and directory structure.   
     * Why do you think that was done, what are the advantages / disadvantages?
+    
+    The advantages to having a seperate file and directory structure are as follows:
+        1) Makes it easier to categorise all your components to adapt to design patterns like container - presentational
+        2) Makes the app decluttered and gives it a structure
+
+    THe disadvantages are:
+        1) Makes it vulnerable to duplicate filenames (if a naming convention is not followed)
 
 2. Thinking about a production ready app, what do you think is missing from all the example. *hint: the square component in the standalone app has one* ?
+        Tests are missing from all except the square component in the standalone app
 
 3. Are you familiar with Redux ?  If so what is the basic idea behind it ?
+        Redux is a state management tool that helps you to organize your data to a single source of truth called the store. The basic idea behing it is to have the data only going one way to manage the data which makes it easier to track what is happening in the app, which makes it less vulnerable to having bugs on the order events.
 
     
 4. *If you are interested in the full-stack role* Please take a look at the partial implementation of an express routes in backend/router.js.
