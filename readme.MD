@@ -48,12 +48,15 @@ Please answer the following questions:
         2) Makes the app decluttered and gives it a structure
 
     THe disadvantages are:
+        
         1) Makes it vulnerable to duplicate filenames (if a naming convention is not followed)
 
 2. Thinking about a production ready app, what do you think is missing from all the example. *hint: the square component in the standalone app has one* ?
+        
         Tests are missing from all except the square component in the standalone app
 
 3. Are you familiar with Redux ?  If so what is the basic idea behind it ?
+        
         Redux is a state management tool that helps you to organize your data to a single source of truth called the store. The basic idea behing it is to have the data only going one way to manage the data which makes it easier to track what is happening in the app, which makes it less vulnerable to having bugs on the order events.
 
     
