@@ -1,5 +1,6 @@
 import React from "react";
 import Board from "../../components/Board";
+import LeagueTable from '../../components/LeagueTable';
 
 import {selectSquare, selectMove} from '../../redux/game/index';
 import {connect} from 'react-redux'
@@ -13,8 +14,7 @@ class Game extends React.Component {
 
     render() {
 
-        const { history, stepNumber, jumpToMove, winner, xIsNext, handleClick, highlighted } = this.props;
-        console.log()
+        const { history, stepNumber, jumpToMove, winner, xIsNext, handleClick, highlighted, winnerHistory } = this.props;
 
         const current = history[stepNumber];
 
@@ -49,6 +49,9 @@ class Game extends React.Component {
                     <div>{status}</div>
                     <ol>{moves}</ol>
                 </div>
+                <div className="game-league-table">
+                    {winnerHistory.length && <LeagueTable leagueHistory={winnerHistory} />}
+                </div>
             </div>
         );
     }
@@ -60,7 +63,8 @@ const mapStateToProps = state => {
         winner: state.game.winner,
         xIsNext: state.game.xIsNext,
         history: state.game.history,
-        stepNumber: state.game.stepNumber
+        stepNumber: state.game.stepNumber,
+        winnerHistory: state.game.winnerHistory
     }
 };
 

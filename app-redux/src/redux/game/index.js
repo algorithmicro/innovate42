@@ -18,7 +18,8 @@ const initialState = {
     ],
     stepNumber: 0,
     xIsNext: true,
-    highlighted: []
+    highlighted: [],
+    winnerHistory: [],
 };
 
 //## Reducer
@@ -63,6 +64,17 @@ function updateSelectedSquare(state, {squareNumber}) {
     }
     squares[squareNumber] = state.xIsNext ? "X" : "O";
 
+    const winner = calculateWinner(squares);
+    let winnerHistory = [...state.winnerHistory];
+    if(winner != null){
+        winnerHistory = [
+            ...state.winnerHistory,
+            {
+                x: winner === 'X' ? 1 : 0,
+                o: winner === 'O' ? 1 : 0,
+            }
+        ]
+    }
     return {
         history: history.concat([
             {
@@ -71,8 +83,9 @@ function updateSelectedSquare(state, {squareNumber}) {
         ]),
         stepNumber: history.length,
         xIsNext: !state.xIsNext,
-        winner: calculateWinner(squares),
-        highlighted: calculateWinner(squares, true)
+        winner: winner,
+        highlighted: calculateWinner(squares, true),
+        winnerHistory: winnerHistory
     };
 }
 

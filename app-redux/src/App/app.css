@@ -3,8 +3,21 @@ body {
     margin: 20px;
 }
 
-ol, ul {
+ol,
+ul {
     padding-left: 30px;
+}
+
+.leagueTable {
+    margin-left: 20px;
+    border-collapse: collapse;
+}
+
+.leagueTable,
+th,
+td {
+    border: 1px solid #999;
+    padding: 5px 10px;
 }
 
 .board-row:after {
@@ -36,8 +49,8 @@ ol, ul {
     outline: none;
 }
 
-.square.highlight{
-    background-color:greenyellow;
+.square.highlight {
+    background-color: greenyellow;
 }
 
 .kbd-navigation .square:focus {
